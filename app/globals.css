@@ -1,26 +1,266 @@
+/* globals.css - CORRECTED VERSION */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a; /* Changed to dark background */
+  --foreground: #ededed; /* Changed to light text */
+  --font-space: "Space Grotesk", sans-serif;
+  --font-sans: "Inter", sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-space); /* Use Space Grotesk instead of Geist */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  /* padding: 0; */
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 140px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #8b5cf6, #06b6d4);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #7c3aed, #0891b2);
+}
+
+/* For better mobile experience */
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 120px;
+  }
+}
+
+/* Animation classes */
+.char-transform {
+  transform-origin: bottom;
+}
+
+@keyframes morph {
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+.morph-animation {
+  animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch-effect {
+  animation: glitch 0.5s infinite;
+}
+
+.transition-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+transition-block {
+  position: absolute;
+  background-color: black;
+  opacity: 0;
+}
+/* Mobile Menu Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+/* Hamburger Icon Animation */
+.hamburger-line {
+  transition: all 0.3s ease;
+}
+
+/* Mobile Menu Items */
+.mobile-menu-item {
+  animation: slideIn 0.3s ease forwards;
+}
+
+.mobile-menu-item-exit {
+  animation: slideOut 0.3s ease forwards;
+}
+
+/* Gradient Border Effect */
+.gradient-border {
+  position: relative;
+}
+
+/* Custom animations */
+@keyframes road-line {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -100px 0;
+  }
+}
+
+.road-line {
+  background-size: 100px 100%;
+  animation: road-line 1s linear infinite;
+}
+
+/* Smooth fade in */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Car bounce animation */
+@keyframes carBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-car-bounce {
+  animation: carBounce 2s ease-in-out infinite;
+}
+
+/* Scroll progress animation */
+#scroll-progress {
+  transition: width 0.3s ease;
+}
+
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(45deg, #ef4444, #000000, #3b82f6);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::after {
+  opacity: 1;
+}
+
+/* Smooth transitions */
+* {
+  scroll-behavior: smooth;
+}
+
+.clip-pentagon {
+  clip-path: polygon(
+    50% 0%,
+    100% 38%,
+    82% 100%,
+    18% 100%,
+    0% 38%
+  );
+}
+
+
+
+/* Fix for z-index issues */
+@layer utilities {
+  .z-mobile-menu {
+    z-index: 9999 !important;
+  }
+  
+  .z-content {
+    z-index: 1;
+  }
+  
+  .z-below {
+    z-index: -1;
+  }
 }
