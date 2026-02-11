@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import Image from "next/image";
+import { collageData } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -165,14 +166,29 @@ useEffect(() => {
         {/* COLLAGE */}
         <div
           ref={collageRef}
-          className="mt-10 grid grid-cols-12 gap-4"
+          className="
+    mt-12
+    grid
+    grid-cols-1
+    sm:grid-cols-2
+    md:grid-cols-3
+    lg:grid-cols-6
+    gap-4
+    auto-rows-[200px]
+    grid-flow-dense
+  "
         >
           {collageData.map((item) => (
             <div
               key={item.id}
-              className={`${item.colSpan} ${item.height} relative rounded-xl overflow-hidden group`}
+              className={`
+        relative
+        overflow-hidden
+        rounded-2xl
+        group
+        ${item.span}
+      `}
             >
-              {/* Image */}
               <Image
                 src={item.image}
                 alt={item.alt}
@@ -181,13 +197,13 @@ useEffect(() => {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
 
-              {/* Hover Overlay */}
+              {/* Overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-500 flex items-end">
-                <div className="p-4 md:p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
+                <div className="p-4 md:p-6 translate-y-10 group-hover:translate-y-0 transition-all duration-500">
+                  <h3 className="text-white text-lg md:text-xl font-semibold mb-1 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-150">
                     {item.title}
                   </h3>
-                  <p className="text-gray-200 text-xs md:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200">
+                  <p className="text-gray-200 text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 delay-200">
                     {item.description}
                   </p>
                 </div>
@@ -200,61 +216,4 @@ useEffect(() => {
   );
 }
 
-export const collageData = [
-  {
-    id: 1,
-    image: "/images/industrial 1.png",
-    alt: "Industrial Automation Project",
-    title: "Industrial Automation",
-    description: "Automated assembly line with 300% efficiency improvement",
 
-    // layout control
-    colSpan: "col-span-12 lg:col-span-6",
-    height: "h-[280px] md:h-[320px]",
-    visible: "block", // always visible
-  },
-  {
-    id: 2,
-    image: "/images/industrial 2.png",
-    alt: "Precision Engineering",
-    title: "Precision Engineering",
-    description: "High-tolerance components manufacturing",
-
-    colSpan: "col-span-6 sm:col-span-4 lg:col-span-3",
-    height: "h-[180px] md:h-[200px]",
-    visible: "block",
-  },
-  {
-    id: 3,
-    image: "/images/industrial 3.png",
-    alt: "Smart Factory Solution",
-    title: "Smart Factory",
-    description: "IoT-enabled factory with real-time monitoring",
-
-    colSpan: "col-span-6 sm:col-span-4 lg:col-span-3",
-    height: "h-[220px] md:h-[260px]",
-    visible: "block",
-  },
-  {
-    id: 4,
-    image: "/images/industrial 4.png",
-    alt: "Quality Control System",
-    title: "Quality Control",
-    description: "AI-powered inspection system",
-
-    colSpan: "hidden sm:block sm:col-span-4 lg:col-span-3",
-    height: "h-[200px] md:h-[240px]",
-    visible: "sm",
-  },
-  {
-    id: 5,
-    image: "/images/industrial 5.png",
-    alt: "Sustainable Manufacturing",
-    title: "Sustainable Tech",
-    description: "Eco-friendly production processes",
-
-    colSpan: "hidden lg:block lg:col-span-3",
-    height: "h-[180px] md:h-[200px]",
-    visible: "lg",
-  },
-];
