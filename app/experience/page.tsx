@@ -104,7 +104,7 @@
 //         {
 //           opacity: 1,
 //           y: 0,
-//           duration: window.innerWidth < 768 ? 0.5 : 0.8,
+//           duration: screenWidth  < 768 ? 0.5 : 0.8,
 //           ease: "power2.out",
 //           scrollTrigger: {
 //             trigger: card,
@@ -114,7 +114,7 @@
 //       );
 //     });
 
-//     if (timelineRef.current && lineRef.current && window.innerWidth >= 1024) {
+//     if (timelineRef.current && lineRef.current && screenWidth  >= 1024) {
 //       ScrollTrigger.create({
 //         trigger: timelineRef.current,
 //         start: "top 30%",
@@ -189,7 +189,7 @@
 //                         `/experience/${item.slug}?id=${encryptIndex(item.id)}`,
 //                       )
 //                     }
-//                     whileHover={{ y: window.innerWidth >= 1024 ? -4 : 0 }}
+//                     whileHover={{ y: screenWidth  >= 1024 ? -4 : 0 }}
 //                     className="w-full max-w-4xl lg:w-[calc(50%-60px)]
 //                       bg-white rounded-2xl shadow-md hover:shadow-xl
 //                       transition-transform duration-300 overflow-hidden cursor-pointer
@@ -343,9 +343,16 @@ export default function ExperienceTimeline() {
   const timelineRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const [screenWidth, setScreenWidth] = useState<number>(0);
 
   const [scrollProgress, setScrollProgress] = useState(0);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+
+  useEffect(() => {
+  if (typeof window !== "undefined") {
+    setScreenWidth(window.innerWidth);
+  }
+}, []);
 
   useEffect(() => {
   window.scrollTo(0, 0);
@@ -366,7 +373,7 @@ export default function ExperienceTimeline() {
         {
           opacity: 1,
           y: 0,
-          duration: window.innerWidth < 768 ? 0.5 : 0.8,
+          duration: screenWidth  < 768 ? 0.5 : 0.8,
           ease: "power2.out",
           scrollTrigger: {
             trigger: card,
@@ -377,7 +384,7 @@ export default function ExperienceTimeline() {
     });
 
     /* CENTER LINE FILL */
-    if (timelineRef.current && lineRef.current && window.innerWidth >= 1024) {
+    if (timelineRef.current && lineRef.current && screenWidth  >= 1024) {
       ScrollTrigger.create({
         trigger: timelineRef.current,
         start: "top 30%",
@@ -519,7 +526,7 @@ export default function ExperienceTimeline() {
                         )
                       }
                       whileHover={{
-                        y: window.innerWidth >= 1024 ? -6 : 0,
+                        y: screenWidth  >= 1024 ? -6 : 0,
                       }}
                       className="
             group w-full max-w-4xl lg:w-[calc(50%-70px)]
