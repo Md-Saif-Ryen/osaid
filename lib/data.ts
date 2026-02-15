@@ -195,3 +195,42 @@
     },
   ];
 
+  export const favouriteData = [
+    {
+      id: 1,
+      title: "Place",
+      value: "Swiss Alps",
+      bg: "#0f172a",
+      image: "/images/fav/place.jpg",
+    },
+    {
+      id: 2,
+      title: "Thing To Do",
+      value: "Playing Football",
+      bg: "#1e293b",
+      image: "/images/fav/football.jpg",
+    },
+    {
+      id: 3,
+      title: "Color",
+      value: "Royal Blue",
+      bg: "#1d4ed8",
+      image: "/images/fav/color.jpg",
+    },
+    {
+      id: 4,
+      title: "Car",
+      value: "Lamborghini Aventador",
+      bg: "#111827",
+      image: "/images/fav/car.jpg",
+    },
+    {
+      id: 5,
+      title: "Person",
+      value: "My Father",
+      bg: "#4c1d95",
+      image: "/images/fav/person.jpg",
+    },
+  ];
+
+

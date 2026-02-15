@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, ReactNode } from "react";
 import gsap from "gsap";
+import Link from "next/link";
 
 interface WaveButtonProps {
   text?: string;
@@ -545,63 +546,65 @@ export default function PremiumWaveButton({
   };
 
   return (
-    <button
-      ref={btnRef}
-      onClick={onClick}
-      className={`
+    <Link href="/about">
+      <button
+        ref={btnRef}
+        onClick={onClick}
+        className={`
         relative overflow-hidden px-10 py-4 w-full
         border-2 border-gray-800 rounded-2xl font-bold
         transition-all duration-300 hover:shadow-2xl
         group active:scale-95
         ${className}
       `}
-      style={{
-        color: textColor,
-        borderColor: waveColor,
-        background: "transparent",
-      }}
-    >
-      {/* Particle Container */}
-      <div
-        ref={rippleContainerRef}
-        className="absolute inset-0 z-0 pointer-events-none"
-      />
-
-      {/* Wave Container */}
-      <div
-        ref={waveRef}
-        className="absolute inset-0 z-1 overflow-hidden rounded-2xl"
+        style={{
+          color: textColor,
+          borderColor: waveColor,
+          background: "transparent",
+        }}
       >
-        {renderWaveSVG()}
-      </div>
+        {/* Particle Container */}
+        <div
+          ref={rippleContainerRef}
+          className="absolute inset-0 z-0 pointer-events-none"
+        />
 
-      {/* Text */}
-      <span
-        ref={btnTextRef}
-        className="relative z-10 flex items-center justify-center gap-3 text-lg tracking-wide"
-      >
-        {children || text}
+        {/* Wave Container */}
+        <div
+          ref={waveRef}
+          className="absolute inset-0 z-1 overflow-hidden rounded-2xl"
+        >
+          {renderWaveSVG()}
+        </div>
 
-        {/* Optional arrow icon */}
-        {!children && (
-          <svg
-            className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            />
-          </svg>
-        )}
-      </span>
+        {/* Text */}
+        <span
+          ref={btnTextRef}
+          className="relative z-10 flex items-center justify-center gap-3 text-lg tracking-wide"
+        >
+          {children || text}
 
-      {/* Edge glow effect */}
-      <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-white/30 transition-all duration-500 z-2" />
-    </button>
+          {/* Optional arrow icon */}
+          {!children && (
+            <svg
+              className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          )}
+        </span>
+
+        {/* Edge glow effect */}
+        <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-white/30 transition-all duration-500 z-2" />
+      </button>
+    </Link>
   );
 }

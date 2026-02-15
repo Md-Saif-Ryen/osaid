@@ -237,7 +237,7 @@ export default function HomePage() {
       scale: 0.8,
       opacity: 0,
       stagger: 0.15,
-      duration: 0.8,
+      duration: 1.8,
       ease: "power2.out",
       scrollTrigger: {
         trigger: ".certificate-section",
@@ -248,13 +248,13 @@ export default function HomePage() {
 
     if (certRowRef.current) {
       gsap.to(certRowRef.current, {
-        x: () => -(certRowRef.current!.scrollWidth - window.innerWidth + 80),
+        x: () => -(certRowRef.current!.scrollWidth - window.innerWidth + 280),
         ease: "none",
         scrollTrigger: {
           trigger: ".certificate-section",
           start: "top 20%",
           end: "bottom top",
-          scrub: 1.2,
+          scrub: 2.2,
           pin: true,
         },
       });
@@ -431,7 +431,7 @@ export default function HomePage() {
           {certificates.map((src, i) => (
             <div
               key={i}
-              className="certificate-card shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[420px] h-[180px] sm:h-[220px] md:h-[260px] bg-white rounded-[40px] p-2 shadow-lg"
+              className="certificate-card shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[420px] h-[180px] sm:h-[220px] md:h-[300px] p-1"
             >
               <div className="relative w-full h-full rounded-[30px] overflow-hidden">
                 <Image

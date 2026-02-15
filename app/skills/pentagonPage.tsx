@@ -36,6 +36,7 @@ export default function PentagonPage() {
   const pentagon3Ref = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+   
     const ctx = gsap.context(() => {
       // Single timeline
       const tl = gsap.timeline({

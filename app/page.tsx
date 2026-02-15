@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TornHero from "@/components/TornHero";
 import HomePage from "@/app/home";
 import FooterSection from "@/components/FooterSection";
+import ValentinePage from "@/components/ValentinePage";
 // import AboutMe from "@/components/AboutMe";
 
 if (typeof window !== "undefined") {
@@ -42,6 +43,7 @@ export default function Home() {
   return (
     <main className="relative bg-white">
       {/* <TornHero /> */}
+  
       <HomePage />
       <FooterSection />
       {/* <AboutMe /> */}
